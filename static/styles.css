@@ -1,0 +1,55 @@
+
+:root {
+  --bg: #0b0f14;
+  --fg: #e6f1ff;
+  --muted: #8aa0b3;
+  --accent: #00ff88;
+  --danger: #ff5d5d;
+  --warn: #ffc857;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 800px at 70% -10%, #101826, var(--bg));
+  color: var(--fg);
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+header {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 8px 0 16px;
+}
+h1 { margin: 0; font-size: 1.4rem; letter-spacing: 0.3px; }
+.controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.controls input[type="range"]{ vertical-align: middle; }
+.controls input[type="color"]{ width: 36px; height: 36px; border: none; background: transparent; }
+
+button {
+  background: #14212e; color: var(--fg); border: 1px solid #223243;
+  padding: 8px 12px; border-radius: 10px; cursor: pointer;
+}
+button:hover { border-color: #355270; }
+#toggleAuthBtn.active { outline: 2px solid var(--warn); }
+
+.badge { padding: 6px 10px; border-radius: 10px; border: 1px solid #2a3a4d; font-size: 0.9rem; }
+.badge.ok { background: rgba(0,255,136,0.1); border-color: var(--accent); color: var(--accent); }
+.badge.fail { background: rgba(255,93,93,0.12); border-color: var(--danger); color: var(--danger); }
+.badge.pending { background: rgba(255,200,87,0.12); border-color: var(--warn); color: var(--warn); }
+
+.enroll input { display: inline-block; }
+
+main { display: grid; grid-template-columns: 1fr 280px; gap: 16px; }
+@media (max-width: 900px){ main { grid-template-columns: 1fr; } }
+
+.stage { position: relative; width: 100%; aspect-ratio: 16/9; background: #0b111a; border-radius: 16px; overflow: hidden; border: 1px solid #1a2736; }
+video, canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#overlay { pointer-events: none; }
+#draw { pointer-events: none; }
+
+.help { background: #0d1621; border: 1px solid #1a2736; border-radius: 16px; padding: 12px; }
+.help h3 { margin-top: 6px; }
+.help ul { margin-top: 6px; color: var(--muted); }
+
+footer { margin-top: 10px; color: var(--muted); }

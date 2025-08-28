@@ -1,1 +1,66 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FingerDraw + FaceAuth</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <!-- TensorFlow + face-api.js for face recognition -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+  <!-- MediaPipe Hands -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>✋ FingerDraw + 🙂 FaceAuth</h1>
+      <div class="controls">
+        <label>Brush size:
+          <input type="range" id="brushSize" min="2" max="30" value="8">
+        </label>
+        <input type="color" id="brushColor" value="#00ff88">
+        <button id="clearBtn">Clear (C)</button>
+        <button id="toggleAuthBtn" title="Bypass face auth for testing">Bypass Auth: OFF</button>
+        <span id="authStatus" class="badge pending">Loading models…</span>
+        <label class="enroll">
+          Enroll face:
+          <input type="file" id="enrollImage" accept="image/*">
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <div class="stage">
+        <video id="video" playsinline autoplay muted></video>
+        <canvas id="overlay"></canvas>
+        <canvas id="draw"></canvas>
+      </div>
+      <aside class="help">
+        <h3>How to draw</h3>
+        <ul>
+          <li><b>Pinch</b> your <b>thumb + index</b> fingers to start drawing.</li>
+          <li>Release the pinch to stop.</li>
+          <li>Press <b>C</b> or click <b>Clear</b> to erase.</li>
+        </ul>
+        <h3>Face Recognition</h3>
+        <ul>
+          <li>Upload a reference face via <b>Enroll face</b>.</li>
+          <li>When your face matches, status turns <b>Authenticated</b>.</li>
+          <li>Drawing is blocked until authenticated (unless you bypass).</li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer>
+      <small>Runs fully in your browser using face-api.js and MediaPipe Hands.</small>
+    </footer>
+  </div>
+</body>
+</html>
